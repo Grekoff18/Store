@@ -15,13 +15,13 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 10; $i++)
+        {
             DB::table("products")->insert([
-                "title" => "Product . {$i}",
+                "title" => "Product{$i}",
                 "price" => rand(100, 900),
                 "in_stock" => 1,
                 "description" => Str::random(20)
-
             ]);
         }
     }
