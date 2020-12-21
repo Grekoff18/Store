@@ -20,13 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7260c1c-8e35-4129-b776-9ebf37f8a657" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/ProductImage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_12_20_190149_create_product_images_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/ProductImagesTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/no_image.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +81,8 @@
       <workItem from="1608027620039" duration="2675000" />
       <workItem from="1608137344061" duration="597000" />
       <workItem from="1608409289704" duration="864000" />
-      <workItem from="1608479131253" duration="9649000" />
+      <workItem from="1608479131253" duration="9742000" />
+      <workItem from="1608546281018" duration="504000" />
     </task>
     <servers />
   </component>
