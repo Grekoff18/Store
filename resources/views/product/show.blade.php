@@ -22,7 +22,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="home_content">
-							<div class="home_title">Smart Phones<span>.</span></div>
+							<div class="home_title">Smart phone<span>.</span></div>
 							<div class="home_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</p></div>
 						</div>
 					</div>
@@ -54,17 +54,29 @@
 			<!-- Product Content -->
 			<div class="col-lg-6">
 				<div class="details_content">
-					<div class="details_name">Smart Phone</div>
-					<div class="details_discount">$890</div>
-					<div class="details_price">$670</div>
+					<div class="details_name">{{$item->title}}</div>
+					@if ($item->new_price !== null)
+						<div class="details_discount">{{$item->new_price}}</div>
+					@endif
+					<div class="details_price">{{$item->price}}</div>
 
 					<!-- In Stock -->
 					<div class="in_stock_container">
 						<div class="availability">Availability:</div>
-						<span>In Stock</span>
+							@if($item->in_stock == 1)
+								<span style="color: green">In stock</span>
+							@else
+								<span style="color: red">Not available</span>
+							@endif
 					</div>
 					<div class="details_text">
-						<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit. Mauris consequat nisi ut mauris efficitur lacinia.</p>
+						<p>
+							@if($item->description)
+								{{$item->description}}
+							@else 
+								No description
+							@endif
+						</p>
 					</div>
 
 					<!-- Product Quantity -->

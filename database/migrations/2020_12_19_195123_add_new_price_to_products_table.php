@@ -14,7 +14,7 @@ class AddNewPriceToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->float("new_price")->nullable();
+            $table->float("old_price")->nullable();
         });
     }
 
