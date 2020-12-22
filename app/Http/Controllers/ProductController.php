@@ -1,23 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+  namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Product;
+  use App\Models\Category;
+  use Illuminate\Http\Request;
+  use App\Models\Product;
 
-class ProductController extends Controller
-{
-	public function show($category_name, $product_id)
-	{
-		$item = Product::where("id", $product_id)->first();
+  class ProductController extends Controller
+  {
+    public function show($category_name, $product_id)
+    {
+      $item = Product::where("id", $product_id)->first();
 
-		return view("product.show", [
-			"item" => $item,
-		]);
-	}
+      return view("product.show", [
+        "item" => $item,
+      ]);
+    }
 
-	public function showCategory($category_name) 
-	{
-		
-	}
+    public function showCategory($category_alias)
+    {
+      $category = Category::where("alias", $category_alias)->first();
+
+      return view("categories.index", [
+        "category" => $category
+      ]);
+    }
 }

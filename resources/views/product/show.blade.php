@@ -1,5 +1,5 @@
 @extends("layouts.main")
-@section("title", "Category")
+@section("title", "Some")
 
 @section('custom_css')
 	<link rel="stylesheet" type="text/css" href="/styles/product.css">
@@ -7,7 +7,7 @@
 @endsection
 
 @section('custom_js')
-	<script src="/js/product.js"></script>	
+	<script src="/js/product.js"></script>
 @endsection
 
 @section("content")
