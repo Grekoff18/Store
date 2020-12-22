@@ -8,9 +8,9 @@
 
   class ProductController extends Controller
   {
-    public function show($category_name, $product_id)
+    public function show($category_name, $product_alias)
     {
-      $item = Product::where("id", $product_id)->first();
+      $item = Product::where("product_alias", $product_alias)->first();
 
       return view("product.show", [
         "item" => $item,
