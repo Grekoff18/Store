@@ -17,12 +17,53 @@
       ]);
     }
 
-    public function showCategory($category_alias)
+    public function showCategory(Request $request, $category_alias)
     {
       $category = Category::where("alias", $category_alias)->first();
+      $prod = Product::where("category_id", $category->id)->get();
+
+      if (isset($request->orderBy))
+      {
+        if ($request->orderBy === "price-low-high")
+        {
+          $prod = Product::where("category_id", $category->id)->orderBy("price")->get();
+        }
+      }
+
+      if (isset($request->orderBy))
+      {
+        if ($request->orderBy === "price-high-low")
+        {
+          $prod = Product::where("category_id", $category->id)->orderBy("price", "desc")->get();
+        }
+      }
+
+      if (isset($request->orderBy))
+      {
+        if ($request->orderBy === "name-A-Z")
+        {
+          $prod = Product::where("category_id", $category->id)->orderBy("title")->get();
+        }
+      }
+
+      if (isset($request->orderBy))
+      {
+        if ($request->orderBy === "name-Z-A")
+        {
+          $prod = Product::where("category_id", $category->id)->orderBy("title", "desc")->get();
+        }
+      }
+
+      if ($request->ajax())
+      {
+        return view("ajax.order-by", [
+          "prod" => $prod
+        ])->render();
+      }
 
       return view("categories.index", [
-        "category" => $category
+        "category" => $category,
+        "prod" => $prod,
       ]);
     }
 }
