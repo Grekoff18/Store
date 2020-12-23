@@ -8,18 +8,18 @@
 
   class ProductController extends Controller
   {
-    public function show($category_name, $product_alias)
+    public function show($category_name, $product_id)
     {
-      $item = Product::where("product_alias", $product_alias)->first();
+      $item = Product::where("id", $product_id)->first();
 
       return view("product.show", [
         "item" => $item,
       ]);
     }
 
-    public function showCategory(Request $request, $category_alias)
+    public function showCategory(Request $request, $category_name)
     {
-      $category = Category::where("alias", $category_alias)->first();
+      $category = Category::where("alias", $category_name)->first();
       $prod = Product::where("category_id", $category->id)->paginate(2);
 
       /**
@@ -30,7 +30,7 @@
       {
         if ($request->orderBy === "price-low-high")
         {
-          $prod = Product::where("category_id", $category->id)->orderBy("price")->paginate(2);
+          $prod = Product::where("category_id", $category_name)->orderBy("price")->paginate(2);
         }
       }
 
@@ -38,7 +38,7 @@
       {
         if ($request->orderBy === "price-high-low")
         {
-          $prod = Product::where("category_id", $category->id)->orderBy("price", "desc")->paginate(2);
+          $prod = Product::where("category_id", $category_name)->orderBy("price", "desc")->paginate(2);
         }
       }
 
@@ -46,7 +46,7 @@
       {
         if ($request->orderBy === "name-A-Z")
         {
-          $prod = Product::where("category_id", $category->id)->orderBy("title")->paginate(2);
+          $prod = Product::where("category_id", $category_name)->orderBy("title")->paginate(2);
         }
       }
 
@@ -54,7 +54,7 @@
       {
         if ($request->orderBy === "name-Z-A")
         {
-          $prod = Product::where("category_id", $category->id)->orderBy("title", "desc")->paginate(2);
+          $prod = Product::where("category_id", $category_name)->orderBy("title", "desc")->paginate(2);
         }
       }
       /**

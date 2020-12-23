@@ -148,7 +148,7 @@
                                 </div>
                                 <div class="product_content">
                                     <div class="product_title">
-                                        <a href="{{route("showProduct", ["category", $product->product_alias])}}">
+                                        <a href="{{route("showProduct", ["category", $product->id])}}">
                                             {{$product->title}}
                                         </a>
                                     </div>

@@ -1,5 +1,5 @@
 @extends("layouts.main")
-@section("title", "Some")
+@section("title", $item->title)
 
 @section('custom_css')
 	<link rel="stylesheet" type="text/css" href="/styles/product.css">
@@ -8,6 +8,40 @@
 
 @section('custom_js')
 	<script src="/js/product.js"></script>
+	<script>
+		$(document).ready(() => {
+			$(".cart_button").click((event) => {
+				event.preventDefault()
+				addToCard()
+			})
+		})
+
+		function addToCard() {
+			let id = $('.details_name').data('id')
+			let qty = parseInt($('#quantity_input').val())
+			let total_qty = parseInt($('.cart-qty').text())
+			total_qty += qty
+
+			$('.cart-qty').text(total_qty)
+			$.ajax({
+				url: "{{route('addToCard')}}",
+				type: "POST",
+				data: {
+					id: id,
+					qty: qty,
+				},
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				success: (data) => {
+					console.log(data)
+				},
+				error: (data) => {
+					console.log(data)
+				}
+			});
+		}
+	</script>
 @endsection
 
 @section("content")
