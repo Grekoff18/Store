@@ -20,13 +20,17 @@
     public function showCategory(Request $request, $category_alias)
     {
       $category = Category::where("alias", $category_alias)->first();
-      $prod = Product::where("category_id", $category->id)->get();
+      $prod = Product::where("category_id", $category->id)->paginate(2);
 
+      /**
+       * Filter for category page
+       * Block start
+       */
       if (isset($request->orderBy))
       {
         if ($request->orderBy === "price-low-high")
         {
-          $prod = Product::where("category_id", $category->id)->orderBy("price")->get();
+          $prod = Product::where("category_id", $category->id)->orderBy("price")->paginate(2);
         }
       }
 
@@ -34,7 +38,7 @@
       {
         if ($request->orderBy === "price-high-low")
         {
-          $prod = Product::where("category_id", $category->id)->orderBy("price", "desc")->get();
+          $prod = Product::where("category_id", $category->id)->orderBy("price", "desc")->paginate(2);
         }
       }
 
@@ -42,7 +46,7 @@
       {
         if ($request->orderBy === "name-A-Z")
         {
-          $prod = Product::where("category_id", $category->id)->orderBy("title")->get();
+          $prod = Product::where("category_id", $category->id)->orderBy("title")->paginate(2);
         }
       }
 
@@ -50,10 +54,16 @@
       {
         if ($request->orderBy === "name-Z-A")
         {
-          $prod = Product::where("category_id", $category->id)->orderBy("title", "desc")->get();
+          $prod = Product::where("category_id", $category->id)->orderBy("title", "desc")->paginate(2);
         }
       }
+      /**
+       * Filter block end.
+       */
 
+      /**
+       * Dynamic generation our page with filtered products
+       */
       if ($request->ajax())
       {
         return view("ajax.order-by", [

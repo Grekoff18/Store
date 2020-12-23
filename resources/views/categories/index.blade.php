@@ -17,7 +17,8 @@
                     url: "{{route("showCategory", $category->alias)}}",
                     type: "GET",
                     data: {
-                        orderBy: orderBy
+                        orderBy: orderBy,
+                        page: {{isset($_GET["page"]) ? isset($_GET["page"]) : 1}}
                     },
                     headers: {
                         "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content")
@@ -26,9 +27,8 @@
                         let positionParameters = location.pathname.indexOf("?")
                         let url = location.pathname.substring(positionParameters, location.pathname.length)
                         let newURL = url + "?"
-                        newURL += "orderBy=" + orderBy
+                        newURL += "orderBy=" + orderBy + "&page={{isset($_GET['page']) ? isset($_GET['page']) : 1}}"
                         history.pushState({}, "", newURL)
-
                         $(".product_grid").html(data)
                         $(".product_grid").isotope("destroy")
                         $(".product_grid").imagesLoaded(() => {
@@ -134,14 +134,7 @@
                         @endforeach
 
                     </div>
-                    <div class="product_pagination">
-                        <ul>
-                            <li class="active"><a href="#">01.</a></li>
-                            <li><a href="#">02.</a></li>
-                            <li><a href="#">03.</a></li>
-                        </ul>
-                    </div>
-
+                    {{$prod->appends(request()->query())->links("pagination.index")}}
                 </div>
             </div>
         </div>
